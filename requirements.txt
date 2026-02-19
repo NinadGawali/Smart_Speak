@@ -1,0 +1,12 @@
+langchain 
+langchain-google-genai 
+google-generativeai
+transformers 
+torch 
+librosa 
+soundfile
+streamlit
+streamlit-webrtc 
+av
+python-dotenv
+
