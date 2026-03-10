@@ -1,5 +1,20 @@
 # Smart_Speak
-Smart Speak is an innovative application designed to analyze and evaluate speech recordings. It provides users with insights into their speaking style, including aspects such as tone, pace, clarity, and emotional expression. By leveraging advanced speech analysis techniques, Smart Speak helps users improve their communication skills and gain confidence in their speaking abilities. Whether you're preparing for a presentation, practicing public speaking, or simply want to enhance your verbal communication, Smart Speak offers valuable feedback to help you become a more effective speaker.
+Smart Speak is an innovative application designed to analyze and evaluate speech recordings using AI-powered RAG (Retrieval Augmented Generation) technology. It provides users with comprehensive insights into their speaking performance by comparing their speech against reference documents. The application analyzes aspects such as content accuracy, completeness, clarity, and provides specific line-by-line improvement suggestions.
+
+## Features
+
+🎯 **RAG-Based Evaluation**: Upload reference documents (PDF/TXT) and evaluate your speech against them using FAISS vector store and semantic search
+
+📊 **Comprehensive Analysis**: Get detailed feedback including:
+- Overall score and performance summary
+- Strengths and weaknesses identification
+- Specific line-by-line improvement suggestions
+- Common mistakes highlighted
+- Chunk-by-chunk detailed analysis with accuracy, completeness, and clarity scores
+
+🎙️ **Advanced Speech Processing**: Uses OpenAI Whisper for accurate speech-to-text transcription
+
+🤖 **AI-Powered Feedback**: Leverages Google Gemini 2.0 Flash for intelligent evaluation and actionable suggestions
 
 
 ## Instructions to Run the App
@@ -35,6 +50,29 @@ Smart Speak is an innovative application designed to analyze and evaluate speech
 7. **Access the App**: Open your web browser and navigate to `http://localhost:8501` to access the Smart Speak application.
 
 ## Notes
-- Ensure you have the necessary API keys and permissions to use any external services integrated into the application.
-- The application needs some time to load at first, especially if it is downloading models or dependencies. Please be patient while it initializes.
-- First enter your content that you are delivering then record your speech and then click on the "Transcribe & Analyse" button to get insights into your speaking style.
+- Ensure you have the necessary API keys (GEMINI_API_KEY) in your `.env` file.
+- The application needs some time to load at first, especially when:
+  - Processing PDF/TXT documents
+  - Creating vector embeddings (first-time document upload)
+  - Loading Whisper model for transcription
+- Please be patient while it initializes.
+
+## Usage Flow
+1. **Upload Reference Document**: Upload a PDF or TXT file containing the topic/speech content
+2. **Wait for Processing**: The app will create a knowledge base from your document
+3. **Record Your Speech**: Use the audio recorder to capture your speech
+4. **Analyze**: Click "Transcribe & Analyze with RAG" to get comprehensive feedback
+5. **Review Results**: 
+   - View overall score and summary
+   - Check strengths and weaknesses
+   - Review specific line-by-line improvement suggestions
+   - Identify common mistakes
+   - Explore detailed chunk-by-chunk analysis
+
+## Technical Stack
+- **Speech-to-Text**: OpenAI Whisper (base model)
+- **Embeddings**: Google Generative AI Embeddings
+- **Vector Store**: FAISS (CPU version)
+- **LLM**: Google Gemini 2.0 Flash
+- **Framework**: Streamlit
+- **Document Processing**: PyPDF, LangChain

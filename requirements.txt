@@ -9,4 +9,9 @@ streamlit
 streamlit-webrtc 
 av
 python-dotenv
+faiss-cpu
+langchain-community
+pypdf
+sentence-transformers
+langchain_huggingface
 

@@ -1,0 +1,528 @@
+Support Vector Machine (SVM)
+1. Introduction
+
+Support Vector Machine (SVM) is a supervised machine learning algorithm used for classification and regression tasks. It is particularly effective for high-dimensional datasets and problems where the number of features is larger than the number of samples.
+
+The main objective of SVM is to find the optimal decision boundary (hyperplane) that separates different classes with the maximum margin.
+
+SVM focuses only on the most important data points, known as support vectors, which lie closest to the decision boundary and determine its position.
+
+Because of this property, SVM is considered a robust and memory-efficient algorithm.
+
+2. Historical Background
+
+The concept of Support Vector Machines originated from statistical learning theory.
+
+Early Foundations (1960s)
+
+The theoretical foundation of SVM was developed by Vladimir Vapnik and Alexey Chervonenkis in the 1960s. Their work focused on the Vapnik–Chervonenkis (VC) theory, which studies the capacity of statistical classification models and their ability to generalize to unseen data.
+
+Development of the Algorithm (1990s)
+
+In 1992, Bernhard Boser, Isabelle Guyon, and Vladimir Vapnik introduced the modern Support Vector Machine algorithm. They proposed the kernel trick, which allowed SVMs to perform non-linear classification by implicitly mapping data into higher-dimensional spaces.
+
+Real-World Adoption
+
+During the late 1990s and early 2000s, SVM became one of the most powerful machine learning algorithms, widely used in areas such as:
+
+Text classification
+
+Image recognition
+
+Bioinformatics
+
+Handwritten digit recognition
+
+Before deep learning became dominant, SVM was considered the state-of-the-art method for many classification problems.
+
+3. Basic Idea of SVM
+
+Consider a dataset with two classes.
+
+SVM attempts to draw a line (in 2D) or hyperplane (in higher dimensions) that separates the classes.
+
+However, unlike many algorithms that simply separate the classes, SVM chooses the boundary that maximizes the margin.
+
+Margin
+
+The margin is the distance between the hyperplane and the closest data points from each class.
+
+The points closest to the boundary are called support vectors.
+
+Maximizing the margin improves the model's generalization ability.
+
+4. Hyperplane
+
+A hyperplane is the decision boundary used to classify data points.
+
+For a 2-dimensional dataset:
+
+𝑤
+1
+𝑥
+1
++
+𝑤
+2
+𝑥
+2
++
+𝑏
+=
+0
+w
+1
+	​
+
+x
+1
+	​
+
++w
+2
+	​
+
+x
+2
+	​
+
++b=0
+
+Where:
+
+𝑤
+w → weight vector
+
+𝑥
+x → feature vector
+
+𝑏
+b → bias
+
+For higher dimensions:
+
+𝑤
+⋅
+𝑥
++
+𝑏
+=
+0
+w⋅x+b=0
+
+The classifier decision rule becomes:
+
+𝑦
+=
+𝑠
+𝑖
+𝑔
+𝑛
+(
+𝑤
+⋅
+𝑥
++
+𝑏
+)
+y=sign(w⋅x+b)
+5. Maximum Margin Principle
+
+The main objective of SVM is to maximize the margin between classes.
+
+Margin =
+
+2
+∣
+∣
+𝑤
+∣
+∣
+∣∣w∣∣
+2
+	​
+
+
+So the optimization problem becomes:
+
+Minimize
+
+1
+2
+∣
+∣
+𝑤
+∣
+∣
+2
+2
+1
+	​
+
+∣∣w∣∣
+2
+
+Subject to
+
+𝑦
+𝑖
+(
+𝑤
+⋅
+𝑥
+𝑖
++
+𝑏
+)
+≥
+1
+y
+i
+	​
+
+(w⋅x
+i
+	​
+
++b)≥1
+
+Where:
+
+𝑥
+𝑖
+x
+i
+	​
+
+ = data point
+
+𝑦
+𝑖
+y
+i
+	​
+
+ = class label (+1 or -1)
+
+6. Support Vectors
+
+Support vectors are the data points closest to the hyperplane.
+
+These points determine the position and orientation of the decision boundary.
+
+Important properties:
+
+Only support vectors influence the model.
+
+Removing other points does not affect the hyperplane.
+
+This makes SVM efficient and stable.
+
+7. Hard Margin vs Soft Margin
+Hard Margin SVM
+
+Used when the data is perfectly linearly separable.
+
+Constraints:
+
+𝑦
+𝑖
+(
+𝑤
+⋅
+𝑥
+𝑖
++
+𝑏
+)
+≥
+1
+y
+i
+	​
+
+(w⋅x
+i
+	​
+
++b)≥1
+
+However, real-world data is often noisy.
+
+Soft Margin SVM
+
+To handle misclassification, slack variables (
+𝜉
+ξ) are introduced.
+
+Optimization becomes:
+
+Minimize
+
+1
+2
+∣
+∣
+𝑤
+∣
+∣
+2
++
+𝐶
+∑
+𝜉
+𝑖
+2
+1
+	​
+
+∣∣w∣∣
+2
++C∑ξ
+i
+	​
+
+
+Where:
+
+𝐶
+C is a regularization parameter
+
+Controls the trade-off between margin maximization and classification error
+
+8. Kernel Trick
+
+Many datasets are not linearly separable.
+
+SVM solves this using the kernel trick, which maps data into a higher-dimensional space where separation becomes possible.
+
+Instead of explicitly transforming the data, SVM computes the dot product in high-dimensional space using kernel functions.
+
+9. Common Kernel Functions
+Linear Kernel
+𝐾
+(
+𝑥
+𝑖
+,
+𝑥
+𝑗
+)
+=
+𝑥
+𝑖
+⋅
+𝑥
+𝑗
+K(x
+i
+	​
+
+,x
+j
+	​
+
+)=x
+i
+	​
+
+⋅x
+j
+	​
+
+
+Used when data is approximately linearly separable.
+
+Polynomial Kernel
+𝐾
+(
+𝑥
+𝑖
+,
+𝑥
+𝑗
+)
+=
+(
+𝑥
+𝑖
+⋅
+𝑥
+𝑗
++
+𝑐
+)
+𝑑
+K(x
+i
+	​
+
+,x
+j
+	​
+
+)=(x
+i
+	​
+
+⋅x
+j
+	​
+
++c)
+d
+
+Captures polynomial relationships.
+
+Radial Basis Function (RBF)
+𝐾
+(
+𝑥
+𝑖
+,
+𝑥
+𝑗
+)
+=
+𝑒
+𝑥
+𝑝
+(
+−
+𝛾
+∣
+∣
+𝑥
+𝑖
+−
+𝑥
+𝑗
+∣
+∣
+2
+)
+K(x
+i
+	​
+
+,x
+j
+	​
+
+)=exp(−γ∣∣x
+i
+	​
+
+−x
+j
+	​
+
+∣∣
+2
+)
+
+One of the most commonly used kernels.
+
+Sigmoid Kernel
+𝐾
+(
+𝑥
+𝑖
+,
+𝑥
+𝑗
+)
+=
+𝑡
+𝑎
+𝑛
+ℎ
+(
+𝑎
+𝑥
+𝑖
+⋅
+𝑥
+𝑗
++
+𝑐
+)
+K(x
+i
+	​
+
+,x
+j
+	​
+
+)=tanh(ax
+i
+	​
+
+⋅x
+j
+	​
+
++c)
+
+Related to neural networks.
+
+10. Advantages of SVM
+
+Works well in high-dimensional spaces
+
+Effective when number of features > number of samples
+
+Uses only support vectors, making it memory efficient
+
+Robust against overfitting with proper regularization
+
+Flexible due to kernel trick
+
+11. Limitations of SVM
+
+Computationally expensive for very large datasets
+
+Selecting the correct kernel and parameters can be difficult
+
+Less interpretable compared to simpler models like Decision Trees
+
+Training time increases significantly with dataset size
+
+12. Applications of SVM
+
+Support Vector Machines have been used in many real-world applications:
+
+Text Classification
+
+Spam detection and document categorization.
+
+Image Recognition
+
+Face detection and object recognition.
+
+Bioinformatics
+
+Protein classification and gene expression analysis.
+
+Handwritten Digit Recognition
+
+Used in datasets like MNIST.
+
+Fraud Detection
+
+Used in financial transaction monitoring.
+
+13. Summary
+
+Support Vector Machines are powerful supervised learning algorithms designed to find the optimal separating hyperplane with maximum margin.
+
+Key ideas include:
+
+Maximum margin principle
+
+Support vectors
+
+Kernel trick for non-linear classification
+
+Due to their strong theoretical foundation and good performance on high-dimensional data, SVMs remain an important method in machine learning despite the rise of deep learning techniques.
