@@ -9,4 +9,6 @@ streamlit
 streamlit-webrtc 
 av
 python-dotenv
-
+faiss-cpu
+sentence-transformers
+requests

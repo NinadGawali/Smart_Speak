@@ -32,7 +32,17 @@ Smart Speak is an innovative application designed to analyze and evaluate speech
     ```bash
     streamlit run llm_inference/speech_info_analysis.py
     ```
-7. **Access the App**: Open your web browser and navigate to `http://localhost:8501` to access the Smart Speak application.
+7. **Run Emotion Recognition Backend (Flask)**: In the environment where `req2.txt` is installed, start the backend service.
+    ```bash
+    python emotion_service.py
+    ```
+   By default this runs on `http://127.0.0.1:5001`.
+
+8. **Optional Backend URL Override**: If needed, set `EMOTION_SERVICE_URL` in `.env`.
+   ```
+   EMOTION_SERVICE_URL = "http://127.0.0.1:5001"
+   ```
+9. **Access the App**: Open your web browser and navigate to `http://localhost:8501` to access the Smart Speak application.
 
 ## Notes
 - Ensure you have the necessary API keys and permissions to use any external services integrated into the application.
